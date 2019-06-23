@@ -1,10 +1,10 @@
 #include "HKServer.h"
 #include "HKLog.h"
-#include "homekit-relay-switch.h"
+#include "RelaySwitchAccessory.h"
 
 SerialLogHandler logHandler;
 
-HomekitRelaySwitchAccessory *acc = new HomekitRelaySwitchAccessory(D7, LOW);
+RelaySwitchAccessory *acc = new RelaySwitchAccessory(D7, LOW);
 
 HKServer *hkServer = NULL;
 
@@ -33,7 +33,7 @@ void setup() {
 	randomSeed(Time.now());//we need to somehow init random seed, so device identity will be unique
 	Serial.begin();
 	
-	hkServer = new HKServer(acc->getDeviceType(),"Homestation","523-12-643",progress);
+	hkServer = new HKServer(acc->getDeviceType(),"RelaySwitch","523-12-643",progress);
 
 	acc->initAccessorySet();
 
